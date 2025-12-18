@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fungsi dan Peran - Rohis SMK Hang Tuah 1 Jakarta</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS for animations -->
+    <style>
+        /* Custom animations - TIDAK DIHAPUS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Custom gradient background - TIDAK DIHAPUS */
+        .bg-gradient-green {
+            background: linear-gradient(135deg, #0a5c36 0%, #1a7940 100%);
+        }
+        
+        /* Custom scrollbar - TIDAK DIHAPUS */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #0a5c36;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a7940;
+        }
+        
+        /* Active navigation style - DIPERBAIKI */
+        .nav-active {
+            color: #0a5c36;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+        }
+        
+        /* Dropdown improvements - DITAMBAHKAN */
+        .nav-dropdown {
+            position: relative;
+        }
+        
+        .nav-dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 100;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .nav-dropdown:hover .nav-dropdown-content,
+        .nav-dropdown:focus-within .nav-dropdown-content {
+            display: block;
+        }
+        
+        .nav-dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-dropdown-content a:hover {
+            background-color: #f0fdf4;
+            color: #065f46;
+            padding-left: 20px;
+        }
+        
+        .nav-dropdown-content a i {
+            width: 20px;
+            margin-right: 8px;
+            text-align: center;
+        }
+        
+        /* Mobile responsive improvements - DITAMBAHKAN */
+        @media (max-width: 768px) {
+            .nav-dropdown-content {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                margin-top: 4px;
+                border-radius: 4px;
+                border: 1px solid #e5e7eb;
+            }
+            
+            .nav-active::after {
+                bottom: 0;
+                left: 0;
+                transform: none;
+                width: 3px;
+                height: 100%;
+            }
+            
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+        }
+        
+        /* Mobile menu styles - DITAMBAHKAN */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* Article content styling - TIDAK DIHAPUS */
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0a5c36;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .article-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        /* Hamburger menu icon - DITAMBAHKAN */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+        }
+        
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: #0a5c36;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* NAVBAR IMPROVEMENTS - DITAMBAHKAN */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Improved mobile navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: none;
+                width: 100%;
+                background-color: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid #e5e7eb;
+            }
+            
+            .mobile-nav.active {
+                display: block;
+            }
+            
+            .nav-dropdown-content {
+                display: none;
+                position: static;
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                border-left: 2px solid #0a5c36;
+            }
+            
+            .nav-dropdown-content.active {
+                display: block;
+            }
+            
+            .nav-dropdown > a {
+                position: relative;
+            }
+            
+            .nav-dropdown > a .dropdown-arrow {
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-dropdown > a.active .dropdown-arrow {
+                transform: rotate(180deg);
+            }
+        }
+        
+        /* Desktop navigation improvements */
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: none;
+            }
+            
+            .desktop-nav {
+                display: block;
+            }
+            
+            .nav-dropdown-content {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-dropdown:hover .nav-dropdown-content,
+            .nav-dropdown:focus-within .nav-dropdown-content {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ============================================= */
+        /* PERBAIKAN NAVBAR - HANYA MENAMBAHKAN CSS INI */
+        /* ============================================= */
+        
+        /* Enhanced navbar styling */
+        .navbar-header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 92, 54, 0.1);
+            box-shadow: 0 4px 20px rgba(10, 92, 54, 0.08);
+        }
+        
+        /* Logo container enhancement */
+        .logo-container {
+            position: relative;
+        }
+        
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            background: linear-gradient(135deg, rgba(10, 92, 54, 0.05), transparent);
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo-container:hover::before {
+            opacity: 1;
+        }
+        
+        /* Desktop nav enhancement */
+        .desktop-nav ul {
+            position: relative;
+        }
+        
+        .desktop-nav ul::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -8px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(10, 92, 54, 0.2), transparent);
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(10, 92, 54, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(10, 92, 54, 0.1);
+        }
+        
+        /* Enhanced active state */
+        .nav-active.nav-link {
+            background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(26, 121, 64, 0.05));
+            box-shadow: 0 4px 12px rgba(10, 92, 54, 0.15);
+            border: 1px solid rgba(10, 92, 54, 0.1);
+        }
+        
+        .nav-active.nav-link::after {
+            background: linear-gradient(90deg, #0a5c36, #1a7940);
+            box-shadow: 0 2px 6px rgba(10, 92, 54, 0.3);
+            height: 3px;
+            width: 80%;
+        }
+        
+        /* Enhanced dropdown */
+        .nav-dropdown-content {
+            border: 1px solid rgba(10, 92, 54, 0.15);
+            box-shadow: 0 15px 35px rgba(10, 92, 54, 0.15);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            padding: 8px 0;
+            margin-top: 10px;
+        }
+        
+        .nav-dropdown-content a {
+            padding: 12px 20px;
+            margin: 0 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-dropdown-content a:hover {
+            background: linear-gradient(90deg, rgba(10, 92, 54, 0.05), rgba(10, 92, 54, 0.1));
+            transform: translateX(4px);
+        }
+        
+        .nav-dropdown-content a i {
+            color: #0a5c36;
+            font-size: 14px;
+        }
+        
+        /* Hamburger menu enhancement */
+        .hamburger {
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger:hover {
+            background: rgba(10, 92, 54, 0.05);
+        }
+        
+        .hamburger-line {
+            background: linear-gradient(90deg, #0a5c36, #1a7940);
+        }
+        
+        /* Mobile navigation enhancement */
+        #mobile-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(10, 92, 54, 0.1);
+            box-shadow: 0 20px 40px rgba(10, 92, 54, 0.1);
+            border-radius: 12px;
+            margin-top: 12px;
+        }
+        
+        #mobile-nav a {
+            padding: 14px 16px;
+            margin: 2px 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        #mobile-nav a:hover {
+            background: linear-gradient(90deg, rgba(10, 92, 54, 0.05), rgba(10, 92, 54, 0.1));
+        }
+        
+        #mobile-nav .mobile-dropdown-content {
+            background: rgba(240, 253, 244, 0.5);
+            border: 1px solid rgba(10, 92, 54, 0.1);
+            border-radius: 8px;
+            margin: 6px 8px;
+        }
+        
+        /* Animation for nav items */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .desktop-nav ul li {
+            animation: slideIn 0.3s ease forwards;
+        }
+        
+        .desktop-nav ul li:nth-child(1) { animation-delay: 0.1s; }
+        .desktop-nav ul li:nth-child(2) { animation-delay: 0.2s; }
+        .desktop-nav ul li:nth-child(3) { animation-delay: 0.3s; }
+        .desktop-nav ul li:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Hover effect for dropdown chevron */
+        .nav-dropdown:hover a .fa-chevron-down {
+            transform: rotate(180deg) translateY(1px);
+        }
+        
+        /* Gradient border for active mobile item */
+        #mobile-nav .nav-active {
+            background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(26, 121, 64, 0.05));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #mobile-nav .nav-active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #0a5c36, #1a7940);
+        }
+        
+        /* Smooth transition for mobile menu */
+        #mobile-nav {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        #mobile-nav.active {
+            max-height: 500px;
+        }
+        
+        /* Drop shadow for logos */
+        .drop-shadow-sm {
+            filter: drop-shadow(0 2px 4px rgba(10, 92, 54, 0.2));
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Sticky header animation */
+        @keyframes headerSticky {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .navbar-header {
+            animation: headerSticky 0.3s ease forwards;
+        }
+        
+        /* Fix for existing hamburger styles */
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* Mobile dropdown arrow */
+        .mobile-dropdown-toggle .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-dropdown-toggle.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+    </style>
+    <link rel="website icon" href="./images/logo-rohis.png">
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Header & Navigation - DIPERBAIKI -->
+    <header class="sticky top-0 z-50 navbar-header">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo Section - TIDAK DIUBAH TAPI DITAMBAH ANIMASI -->
+                <div class="flex items-center space-x-4 logo-container">
+                    <div class="flex items-center space-x-2">
+                        <img src="./images/images-removebg-preview.png" alt="Logo SMK" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                        <div class="h-8 md:h-12 w-px bg-gradient-to-b from-green-500 to-green-700"></div>
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                    </div>
+                    <div class="hidden md:block">
+                        <h1 class="text-lg md:text-xl font-bold text-green-800">Rohis SMK Hang Tuah 1 Jakarta</h1>
+                        <p class="text-xs md:text-sm text-gray-600">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                    <!-- Logo text untuk mobile -->
+                    <div class="md:hidden logo-text-mobile">
+                        <h1 class="text-sm font-bold text-green-800 truncate">Rohis SMK Hang Tuah 1</h1>
+                        <p class="text-xs text-gray-600 truncate">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                </div>
+                
+                <!-- Hamburger Menu untuk Mobile - DIPERBAIKI -->
+                <div class="hamburger md:hidden" id="hamburger-menu" aria-label="Toggle menu">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+                
+                <!-- Desktop Navigation - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+                <nav class="desktop-nav hidden md:block">
+                    <ul class="flex space-x-1">
+                        <li>
+                            <a href="./index.html" class="nav-link block px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-home mr-2 text-sm"></i>Beranda
+                            </a>
+                        </li>
+                        
+                        <li class="nav-dropdown relative">
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active">
+                                <i class="fas fa-user mr-2 text-sm"></i>Profil 
+                                <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-300"></i>
+                            </a>
+                            <div class="nav-dropdown-content">
+                                <a href="./fungsi.html" class="bg-green-50 text-green-700 font-medium">
+                                    <i class="fas fa-check-circle mr-2"></i>Fungsi dan Tujuan
+                                </a>
+                                <a href="./sejarah.html" class="hover:bg-green-50">
+                                    <i class="fas fa-history mr-2"></i>Sejarah
+                                </a>
+                                <a href="./struktur.html" class="hover:bg-green-50">
+                                    <i class="fas fa-sitemap mr-2"></i>Struktur Organisasi
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="kegiatan.html" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-calendar-alt mr-2 text-sm"></i>Kegiatan
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-trophy mr-2 text-sm"></i>Prestasi
+                            </a>
+                        </li>
+                        
+                        <!-- MENGHAPUS: Berita, Arsip, Tentang Sekolah -->
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Mobile Navigation Menu - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+            <div id="mobile-nav" class="mobile-nav md:hidden">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="./index.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-home text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Beranda</span>
+                        </a>
+                    </li>
+                    
+                    <li class="mobile-dropdown">
+                        <a href="#" class="flex items-center justify-between px-4 py-3 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active mobile-dropdown-toggle">
+                            <div class="flex items-center">
+                                <div class="w-8 text-center">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <span class="ml-3">Profil</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </a>
+                        <div class="mobile-dropdown-content">
+                            <a href="./fungsi.html" class="block px-4 py-3 pl-12 text-green-700 font-medium bg-green-50">
+                                <i class="fas fa-check-circle mr-3"></i>Fungsi dan Tujuan
+                            </a>
+                            <a href="./sejarah.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-history mr-3"></i>Sejarah
+                            </a>
+                            <a href="./struktur.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-sitemap mr-3"></i>Struktur Organisasi
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <a href="kegiatan.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-calendar-alt text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Kegiatan</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-trophy text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Prestasi</span>
+                        </a>
+                    </li>
+                    
+                    <!-- MENGHAPUS: Berita, Arsip, Tentang Sekolah -->
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb - TIDAK DIHAPUS -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="./index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-700">
+                            <i class="fas fa-home mr-2"></i>
+                            Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-green-700 md:ml-2">Profil</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <span class="ml-1 text-sm font-medium text-green-700 md:ml-2">Fungsi dan Tujuan</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Hero Section - TIDAK DIHAPUS -->
+    <section class="relative overflow-hidden bg-gradient-green text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/IMG-20251210-WA0044.jpg" alt="Rohis Background" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="container mx-auto px-4 py-12 md:py-16 relative z-10 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">Fungsi dan Peran Rohis</h1>
+            <h2 class="text-xl md:text-2xl font-light mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">Al Yusron SMK Hang Tuah 1 Jakarta</h2>
+            
+            <div class="flex justify-center space-x-4 mb-6" style="animation-delay: 0.4s;">
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+                <div class="w-8 h-1 bg-green-400 rounded-full"></div>
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+            </div>
+            
+            <p class="max-w-3xl mx-auto text-lg animate-fadeInUp" style="animation-delay: 0.6s;">
+                Menjadi wadah pembinaan keislaman yang menyiapkan generasi muslim berakhlak mulia, berwawasan luas, dan berkontribusi positif bagi masyarakat.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Main Article Content - TIDAK DIHAPUS -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Article Header -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fadeInUp">
+                <div class="flex items-center mb-6">
+                    <div class="bg-green-100 p-4 rounded-full mr-4">
+                        <i class="fas fa-tasks text-3xl text-green-700"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-green-800">Fungsi dan Peran Rohis Al Yusron</h1>
+                        <p class="text-gray-600 mt-2">SMK Hang Tuah 1 Jakarta</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center text-gray-500 text-sm border-t border-b border-gray-200 py-3 mb-6">
+                    <div class="flex items-center mr-6">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        <span>Terakhir diperbarui: 12 Desember 2025</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-user mr-2"></i>
+                        <span>Tim Rohis Al Yusron</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article Content -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fadeInUp article-content">
+                <div class="mb-10">
+                    <p class="text-lg text-gray-700 mb-6">
+                        Rohis (Rohani Islam) Al Yusron di SMK Hang Tuah 1 Jakarta memiliki peran strategis dalam pembentukan karakter 
+                        siswa muslim yang beriman, berilmu, dan berakhlak mulia. Sebagai organisasi intra sekolah, Rohis Al Yusron 
+                        berfungsi sebagai wadah pengembangan potensi spiritual siswa dalam rangka mewujudkan visi pendidikan nasional.
+                    </p>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-600 p-6 rounded-r-lg mb-8">
+                        <p class="text-green-800 font-medium">
+                            <i class="fas fa-quote-left text-green-600 text-xl mr-3"></i>
+                            "Rohis adalah jantungnya aktivitas keislaman di sekolah, tempat di mana nilai-nilai agama diinternalisasi 
+                            dan diaktualisasikan dalam kehidupan sehari-hari siswa."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Fungsi Rohis -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 pb-3 border-b border-gray-200">Fungsi Rohis Al Yusron</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Fungsi 1 -->
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-graduation-cap text-green-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-green-800 mb-2">Pembinaan Keagamaan</h4>
+                                    <p class="text-gray-700">Meningkatkan pemahaman dan pengamalan ajaran Islam melalui kajian rutin, mentoring, dan kegiatan keagamaan.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fungsi 2 -->
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-users text-green-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-green-800 mb-2">Pengembangan Karakter</h4>
+                                    <p class="text-gray-700">Membentuk kepribadian muslim yang berakhlak mulia, disiplin, bertanggung jawab, dan peduli sosial.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fungsi 3 -->
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-hands-helping text-green-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-green-800 mb-2">Wadah Kreativitas</h4>
+                                    <p class="text-gray-700">Mengembangkan bakat dan kreativitas siswa dalam bidang seni, dakwah, dan kepemimpinan bernuansa Islami.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fungsi 4 -->
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-handshake text-green-700 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-green-800 mb-2">Sosialisasi dan Silaturahmi</h4>
+                                    <p class="text-gray-700">Mempererat ukhuwah islamiyah antar siswa, guru, dan masyarakat melalui berbagai kegiatan sosial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6">
+                        Keempat fungsi tersebut saling berkaitan dan mendukung satu sama lain dalam upaya mewujudkan tujuan utama Rohis Al Yusron, 
+                        yaitu membentuk siswa muslim yang paripurna (kaffah) dalam keimanan, ilmu, dan akhlak.
+                    </p>
+                </div>
+                
+                <!-- Tujuan Rohis -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 pb-3 border-b border-gray-200">Tujuan Rohis Al Yusron</h3>
+                    
+                    <div class="bg-green-50 p-6 rounded-xl mb-8">
+                        <p class="text-gray-700 mb-4">
+                            Secara umum, tujuan Rohis Al Yusron SMK Hang Tuah 1 Jakarta adalah:
+                        </p>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <span>Meningkatkan keimanan dan ketaqwaan (IMTAQ) siswa muslim terhadap Allah SWT</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <span>Mengembangkan potensi siswa dalam bidang keagamaan sesuai bakat dan minat</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <span>Membina akhlak mulia dan kepribadian islami dalam kehidupan sehari-hari</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <span>Mempersiapkan kader dakwah dan pemimpin masa depan yang berintegritas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <span>Menciptakan lingkungan sekolah yang religius dan kondusif untuk pembelajaran</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <span>Menjalin kerja sama dan silaturahmi dengan organisasi rohis lainnya</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <p class="text-gray-700">
+                        Tujuan-tujuan tersebut diwujudkan melalui berbagai program dan kegiatan yang dirancang secara sistematis, 
+                        berkesinambungan, dan sesuai dengan kebutuhan perkembangan siswa.
+                    </p>
+                </div>
+                
+                <!-- Peran Strategis -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 pb-3 border-b border-gray-200">Peran Strategis Rohis</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                        <!-- Peran 1 -->
+                        <div class="bg-white border border-green-200 p-6 rounded-xl text-center hover-lift">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-user-graduate text-2xl text-green-700"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-green-800 mb-3">Bagi Siswa</h4>
+                            <p class="text-gray-700 text-sm">Sebagai wadah pengembangan diri, peningkatan kapasitas spiritual, dan pembentukan karakter islami.</p>
+                        </div>
+                        
+                        <!-- Peran 2 -->
+                        <div class="bg-white border border-green-200 p-6 rounded-xl text-center hover-lift">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-school text-2xl text-green-700"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-green-800 mb-3">Bagi Sekolah</h4>
+                            <p class="text-gray-700 text-sm">Sebagai mitra strategis dalam mewujudkan visi-misi sekolah dan menciptakan lingkungan religius.</p>
+                        </div>
+                        
+                        <!-- Peran 3 -->
+                        <div class="bg-white border border-green-200 p-6 rounded-xl text-center hover-lift">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users-between-lines text-2xl text-green-700"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-green-800 mb-3">Bagi Masyarakat</h4>
+                            <p class="text-gray-700 text-sm">Sebagai agen perubahan sosial yang menyiapkan generasi muslim berkontribusi positif bagi masyarakat.</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700">
+                        Dengan peran strategis ini, Rohis Al Yusron tidak hanya berfungsi sebagai organisasi intra sekolah biasa, 
+                        tetapi menjadi bagian integral dari ekosistem pendidikan yang holistik di SMK Hang Tuah 1 Jakarta.
+                    </p>
+                </div>
+                
+                <!-- Penutup -->
+                <div class="bg-gradient-green text-white p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-4">Kesimpulan</h3>
+                    <p class="mb-4">
+                        Rohis Al Yusron SMK Hang Tuah 1 Jakarta memiliki fungsi, tujuan, dan peran yang sangat penting dalam 
+                        pembentukan karakter siswa muslim. Melalui berbagai program dan kegiatan yang dilaksanakan, Rohis Al Yusron 
+                        berkomitmen untuk mencetak generasi muslim yang tidak hanya cerdas secara akademik, tetapi juga kuat secara 
+                        spiritual dan mulia dalam akhlaknya.
+                    </p>
+                    <p>
+                        <i>"Sebaik-baik manusia adalah yang paling bermanfaat bagi orang lain"</i> (HR. Ahmad) - Inilah prinsip yang 
+                        senantiasa dipegang teguh oleh Rohis Al Yusron dalam setiap aktivitasnya.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Navigation Between Articles -->
+            <div class="flex flex-col sm:flex-row justify-between gap-4 mt-12">
+                <a href="./index.html" class="flex items-center justify-center sm:justify-start bg-white text-green-800 font-medium px-6 py-3 rounded-lg border border-green-200 hover:bg-green-50 transition hover-lift">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Kembali ke Beranda
+                </a>
+                
+                <a href="./sejarah.html" class="flex items-center justify-center sm:justify-end bg-green-700 text-white font-medium px-6 py-3 rounded-lg hover:bg-green-800 transition hover-lift">
+                    Sejarah Rohis
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer - TIDAK DIHAPUS -->
+    <footer class="bg-green-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 mr-3">
+                        <div>
+                            <h3 class="font-bold text-xl">Rohis Al Yusron</h3>
+                            <p class="text-green-300 text-sm">SMK Hang Tuah 1 Jakarta</p>
+                        </div>
+                    </div>
+                    <p class="text-green-200">
+                        Wadah pembinaan keislaman siswa muslim di SMK Hang Tuah 1 Jakarta, 
+                        membentuk generasi beriman, berilmu, dan berakhlak mulia.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Beranda</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Profil Organisasi</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Kegiatan Rutin</a></li>
+                        <li><a href="#" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Prestasi</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">SMK Hang Tuah 1 Jakarta, Jl. Tabah Raya No. 1, RT.1/RW.9, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Kota Administrasi Jakarta Utara, 14240.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 812-9736-9393 (Ust. Imam Royani, S.Pd.I, ) </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 857-1884-4700 (Ust. Hendri Tris Munandar, S.Pd) </span>
+                        </li>
+                        <li class="flex items-start"><i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                        <span class="text-green-200">+62 896 4487 0970 (Ustzh. Fiqhiyatul Ma'rifah, S.Pd)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-800 pt-8 text-center">
+                <p class="text-green-300">© 2025 Rohis Al Yusron SMK Hang Tuah 1 Jakarta. All rights reserved.</p>
+                <p class="text-green-400 text-sm mt-2">Bersatu dalam Islam, Maju dalam Prestasi</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript for improved navbar functionality - DIPERBAIKI -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple animation on scroll - TIDAK DIHAPUS
+            const animateElements = document.querySelectorAll('.animate-fadeInUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => observer.observe(el));
+            
+            // Add hover effect to cards - TIDAK DIHAPUS
+            const cards = document.querySelectorAll('.hover-lift');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                });
+            });
+            
+            // Mobile menu toggle - DIPERBAIKI
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (hamburgerMenu && mobileNav) {
+                hamburgerMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                    
+                    // Toggle aria-expanded for accessibility
+                    const isExpanded = this.classList.contains('active');
+                    this.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+            
+            // Mobile dropdown toggle - DIPERBAIKI untuk struktur yang ada
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const dropdownContent = this.nextElementSibling;
+                    
+                    // Toggle dropdown
+                    dropdownContent.classList.toggle('active');
+                    
+                    // Toggle chevron rotation
+                    const chevron = this.querySelector('.fa-chevron-down');
+                    if (chevron) {
+                        chevron.classList.toggle('rotate-180');
+                    }
+                    
+                    // Toggle active class on toggle
+                    this.classList.toggle('active');
+                    
+                    // Close other dropdowns
+                    mobileDropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            const otherContent = otherToggle.nextElementSibling;
+                            if (otherContent) {
+                                otherContent.classList.remove('active');
+                            }
+                            const otherChevron = otherToggle.querySelector('.fa-chevron-down');
+                            if (otherChevron) {
+                                otherChevron.classList.remove('rotate-180');
+                            }
+                            otherToggle.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Close mobile menu when clicking outside - DITAMBAHKAN
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('#mobile-nav') && !e.target.closest('#hamburger-menu')) {
+                    if (mobileNav && mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        if (hamburgerMenu) {
+                            hamburgerMenu.classList.remove('active');
+                            hamburgerMenu.setAttribute('aria-expanded', 'false');
+                        }
+                        
+                        // Close all mobile dropdowns
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+                            toggle.classList.remove('active');
+                            const chevron = toggle.querySelector('.fa-chevron-down');
+                            if (chevron) {
+                                chevron.classList.remove('rotate-180');
+                            }
+                        });
+                    }
+                }
+            });
+            
+            // Close mobile menu when clicking on a link (not dropdown toggle) - DIPERBAIKI
+            const mobileLinks = document.querySelectorAll('#mobile-nav a:not(.mobile-dropdown-toggle)');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (hamburgerMenu && mobileNav) {
+                        hamburgerMenu.classList.remove('active');
+                        mobileNav.classList.remove('active');
+                        hamburgerMenu.setAttribute('aria-expanded', 'false');
+                        
+                        // Close all dropdowns
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+                            toggle.classList.remove('active');
+                            const chevron = toggle.querySelector('.fa-chevron-down');
+                            if (chevron) {
+                                chevron.classList.remove('rotate-180');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Highlight current page - DIPERBAIKI
+            function highlightCurrentPage() {
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const allNavLinks = document.querySelectorAll('.desktop-nav a, #mobile-nav a');
+                
+                // Remove all active classes first
+                allNavLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    link.classList.remove('bg-green-50');
+                });
+                
+                // Add active class to current page
+                allNavLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref) {
+                        const linkPage = linkHref.split('/').pop();
+                        
+                        // Check if current page matches link page
+                        if (currentPage === linkPage || 
+                            (currentPage === '' && linkPage === 'index.html') ||
+                            (currentPage === 'fungsi.html' && linkPage === 'fungsi.html')) {
+                            
+                            link.classList.add('nav-active');
+                            
+                            // For mobile dropdown items, also highlight parent
+                            if (link.closest('.mobile-dropdown-content')) {
+                                const parentLink = link.closest('.mobile-dropdown').querySelector('.mobile-dropdown-toggle');
+                                if (parentLink) {
+                                    parentLink.classList.add('nav-active');
+                                }
+                            }
+                            
+                            // For desktop dropdown items, also highlight parent
+                            if (link.closest('.nav-dropdown-content')) {
+                                const parentLink = link.closest('.nav-dropdown').querySelector('a');
+                                if (parentLink) {
+                                    parentLink.classList.add('nav-active');
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Initial highlight
+            highlightCurrentPage();
+            
+            // Enhanced desktop dropdown behavior
+            const desktopDropdowns = document.querySelectorAll('.desktop-nav .nav-dropdown');
+            desktopDropdowns.forEach(dropdown => {
+                const chevron = dropdown.querySelector('.fa-chevron-down');
+                
+                dropdown.addEventListener('mouseenter', function() {
+                    const content = this.querySelector('.nav-dropdown-content');
+                    if (content) {
+                        content.style.opacity = '1';
+                        content.style.visibility = 'visible';
+                        content.style.transform = 'translateY(0)';
+                    }
+                    if (chevron) {
+                        chevron.style.transform = 'rotate(180deg) translateY(1px)';
+                    }
+                });
+                
+                dropdown.addEventListener('mouseleave', function() {
+                    const content = this.querySelector('.nav-dropdown-content');
+                    if (content) {
+                        content.style.opacity = '0';
+                        content.style.visibility = 'hidden';
+                        content.style.transform = 'translateY(-10px)';
+                    }
+                    if (chevron) {
+                        chevron.style.transform = 'rotate(0deg) translateY(0px)';
+                    }
+                });
+            });
+            
+            // Add animation delay to mobile menu items
+            const mobileMenuItems = document.querySelectorAll('#mobile-nav li');
+            mobileMenuItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>

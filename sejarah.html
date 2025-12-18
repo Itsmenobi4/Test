@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah - Rohis SMK Hang Tuah 1 Jakarta</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS for animations -->
+    <style>
+        /* Custom animations - SAMA DENGAN struktur.html */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Custom gradient background */
+        .bg-gradient-green {
+            background: linear-gradient(135deg, #0a5c36 0%, #1a7940 100%);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #0a5c36;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a7940;
+        }
+        
+        /* CSS untuk Navbar - SAMA DENGAN struktur.html */
+        /* Hamburger menu icon */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .hamburger-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-line:nth-child(1) {
+            top: 0;
+        }
+        
+        .hamburger-line:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hamburger-line:nth-child(3) {
+            bottom: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Desktop navigation dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+        
+        .nav-dropdown-content {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            min-width: 200px;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 50;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .nav-dropdown:hover .nav-dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown-content a {
+            display: block;
+            padding: 10px 16px;
+            color: #374151;
+            text-decoration: none;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-dropdown-content a:hover {
+            background-color: #f0fdf4;
+            padding-left: 20px;
+            color: #065f46;
+        }
+        
+        /* Mobile navigation */
+        .mobile-nav {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .mobile-nav.active {
+            display: block;
+            max-height: 500px;
+        }
+        
+        /* Mobile dropdown */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f9fafb;
+            border-radius: 6px;
+            margin: 4px 0;
+        }
+        
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+        }
+        
+        /* Active page indicator */
+        .nav-active {
+            color: #0a5c36;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .nav-active::after {
+                bottom: 0;
+                left: 0;
+                transform: none;
+                width: 3px;
+                height: 100%;
+            }
+            
+            .mobile-dropdown-content a {
+                padding-left: 32px;
+            }
+        }
+        
+        /* Timeline styling khusus untuk halaman sejarah */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #0a5c36;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: white;
+            border: 4px solid #0a5c36;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Responsive timeline */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+        
+        /* Style for milestones cards */
+        .milestone-card {
+            border-left: 4px solid #0a5c36;
+            transition: all 0.3s ease;
+        }
+        
+        .milestone-card:hover {
+            border-left-color: #1a7940;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link rel="website icon" href="./images/logo-rohis.png">
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Header & Navigation - SAMA DENGAN struktur.html -->
+    <header class="sticky top-0 z-50 navbar-header">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo Section -->
+                <div class="flex items-center space-x-4 logo-container">
+                    <div class="flex items-center space-x-2">
+                        <img src="./images/images-removebg-preview.png" alt="Logo SMK" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                        <div class="h-8 md:h-12 w-px bg-gradient-to-b from-green-500 to-green-700"></div>
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                    </div>
+                    <div class="hidden md:block">
+                        <h1 class="text-lg md:text-xl font-bold text-green-800">Rohis SMK Hang Tuah 1 Jakarta</h1>
+                        <p class="text-xs md:text-sm text-gray-600">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                    <!-- Logo text untuk mobile -->
+                    <div class="md:hidden logo-text-mobile">
+                        <h1 class="text-sm font-bold text-green-800 truncate">Rohis SMK Hang Tuah 1</h1>
+                        <p class="text-xs text-gray-600 truncate">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                </div>
+                
+                <!-- Hamburger Menu untuk Mobile -->
+                <div class="hamburger md:hidden" id="hamburger-menu" aria-label="Toggle menu">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+                
+                <!-- Desktop Navigation - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+                <nav class="desktop-nav hidden md:block">
+                    <ul class="flex space-x-1">
+                        <li>
+                            <a href="./index.html" class="nav-link block px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-home mr-2 text-sm"></i>Beranda
+                            </a>
+                        </li>
+                        
+                        <li class="nav-dropdown relative">
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active">
+                                <i class="fas fa-user mr-2 text-sm"></i>Profil 
+                                <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-300"></i>
+                            </a>
+                            <div class="nav-dropdown-content">
+                                <a href="./fungsi.html" class="hover:bg-green-50">
+                                    <i class="fas fa-check-circle mr-2"></i>Fungsi dan Tujuan
+                                </a>
+                                <a href="./sejarah.html" class="bg-green-50 text-green-700 font-medium">
+                                    <i class="fas fa-history mr-2"></i>Sejarah
+                                </a>
+                                <a href="./struktur.html" class="hover:bg-green-50">
+                                    <i class="fas fa-sitemap mr-2"></i>Struktur Organisasi
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="kegiatan.html" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-calendar-alt mr-2 text-sm"></i>Kegiatan
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-trophy mr-2 text-sm"></i>Prestasi
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Mobile Navigation Menu - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+            <div id="mobile-nav" class="mobile-nav md:hidden">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="./index.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-home text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Beranda</span>
+                        </a>
+                    </li>
+                    
+                    <li class="mobile-dropdown">
+                        <a href="#" class="flex items-center justify-between px-4 py-3 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active mobile-dropdown-toggle">
+                            <div class="flex items-center">
+                                <div class="w-8 text-center">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <span class="ml-3">Profil</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </a>
+                        <div class="mobile-dropdown-content">
+                            <a href="./fungsi.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-check-circle mr-3"></i>Fungsi dan Tujuan
+                            </a>
+                            <a href="./sejarah.html" class="block px-4 py-3 pl-12 text-green-700 font-medium bg-green-50">
+                                <i class="fas fa-history mr-3"></i>Sejarah
+                            </a>
+                            <a href="./struktur.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-sitemap mr-3"></i>Struktur Organisasi
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <a href="kegiatan.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-calendar-alt text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Kegiatan</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-trophy text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Prestasi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="./index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-700">
+                            <i class="fas fa-home mr-2"></i>
+                            Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-green-700 md:ml-2">Profil</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <span class="ml-1 text-sm font-medium text-green-700 md:ml-2">Sejarah</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-green text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/IMG-20251210-WA0044.jpg" alt="Rohis Background" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="container mx-auto px-4 py-12 md:py-16 relative z-10 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">Sejarah Berdiri</h1>
+            <h2 class="text-xl md:text-2xl font-light mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">Rohis Al Yusron SMK Hang Tuah 1 Jakarta</h2>
+            
+            <div class="flex justify-center space-x-4 mb-6" style="animation-delay: 0.4s;">
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+                <div class="w-8 h-1 bg-green-400 rounded-full"></div>
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+            </div>
+            
+            <p class="max-w-3xl mx-auto text-lg animate-fadeInUp" style="animation-delay: 0.6s;">
+                Perjalanan Rohis Al Yusron dari masa ke masa, menapaki jejak perjuangan dalam membina siswa muslim SMK Hang Tuah 1 Jakarta.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Introduction Section -->
+        <div class="max-w-6xl mx-auto mb-16 animate-fadeInUp">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Sejarah Rohis Al Yusron</h2>
+                <p class="text-gray-600 max-w-4xl mx-auto text-lg">
+                    Rohis (Rohani Islam) Al Yusron SMK Hang Tuah 1 Jakarta didirikan dengan semangat membina 
+                    siswa muslim untuk menjadi generasi yang beriman, berilmu, dan berakhlak mulia. 
+                    Berikut adalah perjalanan sejarah organisasi kami.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 mb-12">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/3 mb-8 md:mb-0 md:mr-10">
+                        <div class="rounded-xl overflow-hidden shadow-xl">
+                            <img src="./images/IMG-20251210-WA0044.jpg" alt="Foto Sejarah Rohis" class="w-full h-64 object-cover">
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-3">Foto dokumentasi awal kegiatan Rohis</p>
+                    </div>
+                    
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">Awal Mula Berdiri</h3>
+                        <p class="text-gray-700 mb-4">
+                            Rohis Al Yusron SMK Hang Tuah 1 Jakarta didirikan pada tahun <span class="font-bold text-green-700">2005</span> 
+                            oleh sekelompok siswa muslim yang peduli akan pentingnya pembinaan keislaman di lingkungan sekolah. 
+                            Nama "Al Yusron" dipilih dengan harapan organisasi ini dapat menjadi kemudahan bagi siswa dalam 
+                            memahami dan mengamalkan ajaran Islam.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Pada awalnya, kegiatan Rohis hanya berupa pengajian kecil yang dilaksanakan setiap Jumat pagi sebelum 
+                            kegiatan belajar mengajar dimulai. Seiring berjalannya waktu, kegiatan semakin berkembang dengan 
+                            adanya berbagai program seperti pesantren kilat, lomba-lomba keislaman, dan bakti sosial.
+                        </p>
+                        <p class="text-gray-700">
+                            Visi awal pendirian Rohis adalah membentuk siswa muslim yang tidak hanya unggul dalam akademik 
+                            tetapi juga memiliki akhlak mulia berdasarkan ajaran Islam, sehingga dapat menjadi teladan bagi 
+                            lingkungan sekitar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Timeline Section -->
+        <div class="max-w-6xl mx-auto mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Timeline Perkembangan</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Perjalanan panjang Rohis Al Yusron dari awal berdiri hingga sekarang.
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <!-- Tahun 2005 -->
+                <div class="timeline-container left animate-fadeInUp">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-800 font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2005
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Pendirian Rohis</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Rohis Al Yusron didirikan oleh siswa-siswa muslim SMK Hang Tuah 1 Jakarta dengan 
+                            kegiatan awal berupa pengajian Jumat pagi. Pembina pertama adalah Ust. Imam Royani, S.Pd.I.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-users mr-2"></i>
+                            <span>Anggota awal: 15 siswa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahun 2008 -->
+                <div class="timeline-container right animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-800 font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2008
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Ekspansi Kegiatan</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Rohis mulai mengadakan pesantren kilat (sanlat) pertama selama bulan Ramadan, 
+                            lomba adzan, dan MTQ internal sekolah. Anggota bertambah menjadi 35 siswa.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>Kegiatan rutin: Pengajian, Sanlat, Lomba</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahun 2012 -->
+                <div class="timeline-container left animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-800 font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2012
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Pembentukan Divisi</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Struktur organisasi diperkuat dengan pembentukan divisi: Pendidikan, Dokumentasi, 
+                            Sosial, dan Humas. Rohis mulai berpartisipasi dalam kegiatan antar sekolah.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-sitemap mr-2"></i>
+                            <span>Struktur organisasi formal pertama</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahun 2015 -->
+                <div class="timeline-container right animate-fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-800 font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2015
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Peresmian Sekretariat</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Sekolah mengalokasikan ruang khusus sebagai sekretariat Rohis. Rohis mengadakan 
+                            kegiatan bakti sosial pertama ke panti asuhan dan memperoleh prestasi di lomba 
+                            keislaman tingkat kecamatan.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-building mr-2"></i>
+                            <span>Sekretariat tetap pertama</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahun 2018 -->
+                <div class="timeline-container left animate-fadeInUp" style="animation-delay: 0.8s;">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-800 font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2018
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Peningkatan Digital</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Rohis mulai aktif di media sosial untuk penyebaran informasi. Website pertama 
+                            diluncurkan. Pembentukan divisi Teknologi Informasi untuk mengelola media digital.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-laptop-code mr-2"></i>
+                            <span>Transformasi digital organisasi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahun 2021 -->
+                <div class="timeline-container right animate-fadeInUp" style="animation-delay: 1s;">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 text-green-800 font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2021
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Adaptasi Pandemi</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Selama pandemi, kegiatan dialihkan ke platform online. Rohis menyelenggarakan 
+                            kajian online, lomba virtual, dan tetap aktif melakukan pembinaan anggota 
+                            melalui media digital.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-video mr-2"></i>
+                            <span>Transformasi kegiatan ke platform digital</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tahun 2023-Sekarang -->
+                <div class="timeline-container left animate-fadeInUp" style="animation-delay: 1.2s;">
+                    <div class="timeline-content">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-700 text-white font-bold text-xl px-4 py-2 rounded-lg mr-4">
+                                2023-Sekarang
+                            </div>
+                            <h3 class="text-xl font-bold text-green-800">Era Kebangkitan</h3>
+                        </div>
+                        <p class="text-gray-700">
+                            Rohis Al Yusron semakin berkembang dengan anggota aktif lebih dari 50 siswa. 
+                            Kegiatan semakin variatif dengan program baru seperti mentoring agama, 
+                            keputrian, dan berbagai lomba keislaman. Prestasi terus diraih di berbagai 
+                            kompetisi tingkat kota dan provinsi.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>Anggota aktif: 50+ siswa, berbagai prestasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Milestones Section -->
+        <div class="max-w-6xl mx-auto mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Pencapaian Penting</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Tonggak-tonggak penting dalam perjalanan Rohis Al Yusron.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="milestone-card bg-white p-6 rounded-xl shadow-lg hover-lift animate-fadeInUp">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-user-friends text-2xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Pertumbuhan Anggota</h3>
+                            <p class="text-green-600 font-bold">15 → 50+ Anggota</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Dari hanya 15 anggota di awal berdiri, kini Rohis Al Yusron memiliki lebih dari 50 anggota aktif setiap tahunnya.
+                    </p>
+                </div>
+                
+                <div class="milestone-card bg-white p-6 rounded-xl shadow-lg hover-lift animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-medal text-2xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Prestasi Lomba</h3>
+                            <p class="text-green-600 font-bold">10+ Penghargaan</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Berhasil meraih berbagai prestasi di lomba keislaman tingkat kecamatan, kota, dan provinsi.
+                    </p>
+                </div>
+                
+                <div class="milestone-card bg-white p-6 rounded-xl shadow-lg hover-lift animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-hands-helping text-2xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Bakti Sosial</h3>
+                            <p class="text-green-600 font-bold">5+ Kegiatan Tahunan</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Rutin mengadakan bakti sosial ke panti asuhan, panti jompo, dan masyarakat sekitar sekolah.
+                    </p>
+                </div>
+                
+                <div class="milestone-card bg-white p-6 rounded-xl shadow-lg hover-lift animate-fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-book-open text-2xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Program Pendidikan</h3>
+                            <p class="text-green-600 font-bold">7 Program Rutin</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Mengembangkan berbagai program pendidikan seperti mentoring, kajian rutin, pesantren kilat, dan kelas tahsin.
+                    </p>
+                </div>
+                
+                <div class="milestone-card bg-white p-6 rounded-xl shadow-lg hover-lift animate-fadeInUp" style="animation-delay: 0.8s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-digital-tachograph text-2xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Media Digital</h3>
+                            <p class="text-green-600 font-bold">3 Platform Aktif</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Mengelola website, Instagram, dan YouTube untuk penyebaran konten keislaman dan informasi kegiatan.
+                    </p>
+                </div>
+                
+                <div class="milestone-card bg-white p-6 rounded-xl shadow-lg hover-lift animate-fadeInUp" style="animation-delay: 1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-handshake text-2xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Kolaborasi</h3>
+                            <p class="text-green-600 font-bold">10+ Organisasi Mitra</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">
+                        Menjalin kerjasama dengan berbagai organisasi keislaman sekolah lain dan lembaga dakwah di Jakarta.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vision for the Future -->
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gradient-green text-white rounded-2xl shadow-xl p-8 md:p-10 animate-fadeInUp">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Visi Ke Depan</h2>
+                    <p class="text-green-100 text-lg max-w-3xl mx-auto">
+                        Rohis Al Yusron terus berkomitmen untuk menjadi wadah pembinaan keislaman yang 
+                        berkualitas dan relevan dengan perkembangan zaman.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bullseye text-3xl mr-4 text-green-300"></i>
+                            <h3 class="text-xl font-bold">Tujuan Masa Depan</h3>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-300 mt-1 mr-2"></i>
+                                <span>Menjadi Rohis percontohan di tingkat Jakarta Utara</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-300 mt-1 mr-2"></i>
+                                <span>Mengembangkan program mentoring yang lebih terstruktur</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-300 mt-1 mr-2"></i>
+                                <span>Memperluas jaringan dengan organisasi keislaman lainnya</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-rocket text-3xl mr-4 text-green-300"></i>
+                            <h3 class="text-xl font-bold">Harapan</h3>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-green-300 mt-1 mr-2"></i>
+                                <span>Anggota Rohis menjadi teladan akhlak di sekolah dan masyarakat</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-green-300 mt-1 mr-2"></i>
+                                <span>Kontribusi nyata dalam pembangunan karakter siswa muslim</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-green-300 mt-1 mr-2"></i>
+                                <span>Melahirkan generasi muslim yang siap menghadapi tantangan zaman</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <p class="text-xl font-light italic">
+                        "Bersatu dalam Islam, Maju dalam Prestasi"<br>
+                        <span class="font-bold">Motto Rohis Al Yusron</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer - SAMA DENGAN struktur.html -->
+    <footer class="bg-green-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 mr-3">
+                        <div>
+                            <h3 class="font-bold text-xl">Rohis Al Yusron</h3>
+                            <p class="text-green-300 text-sm">SMK Hang Tuah 1 Jakarta</p>
+                        </div>
+                    </div>
+                    <p class="text-green-200">
+                        Wadah pembinaan keislaman siswa muslim di SMK Hang Tuah 1 Jakarta, 
+                        membentuk generasi beriman, berilmu, dan berakhlak mulia.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Beranda</a></li>
+                        <li><a href="sejarah.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Sejarah</a></li>
+                        <li><a href="kegiatan.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Kegiatan</a></li>
+                        <li><a href="prestasi.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Prestasi</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">SMK Hang Tuah 1 Jakarta, Jl. Tabah Raya No. 1, RT.1/RW.9, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Kota Administrasi Jakarta Utara, 14240.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 812-9736-9393 (Ust. Imam Royani, S.Pd.I)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 857-1884-4700 (Ust. Hendri Tris Munandar, S.Pd)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-800 pt-8 text-center">
+                <p class="text-green-300">© 2025 Rohis Al Yusron SMK Hang Tuah 1 Jakarta. All rights reserved.</p>
+                <p class="text-green-400 text-sm mt-2">Bersatu dalam Islam, Maju dalam Prestasi</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript - SAMA DENGAN struktur.html -->
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (hamburgerMenu && mobileNav) {
+                hamburgerMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                });
+            }
+            
+            // Mobile dropdown toggle
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownContent = this.nextElementSibling;
+                    const chevron = this.querySelector('.fa-chevron-down');
+                    
+                    // Toggle dropdown
+                    dropdownContent.classList.toggle('active');
+                    
+                    // Rotate chevron
+                    if (chevron) {
+                        chevron.classList.toggle('rotate-180');
+                    }
+                    
+                    // Close other dropdowns
+                    mobileDropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            const otherContent = otherToggle.nextElementSibling;
+                            const otherChevron = otherToggle.querySelector('.fa-chevron-down');
+                            if (otherContent) {
+                                otherContent.classList.remove('active');
+                            }
+                            if (otherChevron) {
+                                otherChevron.classList.remove('rotate-180');
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('#mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.classList.contains('mobile-dropdown-toggle')) {
+                        if (hamburgerMenu && mobileNav) {
+                            hamburgerMenu.classList.remove('active');
+                            mobileNav.classList.remove('active');
+                        }
+                        
+                        // Close all dropdowns
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        
+                        // Reset all chevrons
+                        document.querySelectorAll('.mobile-dropdown-toggle .fa-chevron-down').forEach(chevron => {
+                            chevron.classList.remove('rotate-180');
+                        });
+                    }
+                });
+            });
+            
+            // Simple animation on scroll
+            const animateElements = document.querySelectorAll('.animate-fadeInUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html> 

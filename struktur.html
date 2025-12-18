@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi - Rohis SMK Hang Tuah 1 Jakarta</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS for animations -->
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Custom gradient background */
+        .bg-gradient-green {
+            background: linear-gradient(135deg, #0a5c36 0%, #1a7940 100%);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #0a5c36;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a7940;
+        }
+        
+        /* CSS untuk Navbar - PERBAIKAN DITAMBAHKAN */
+        /* Hamburger menu icon */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .hamburger-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-line:nth-child(1) {
+            top: 0;
+        }
+        
+        .hamburger-line:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hamburger-line:nth-child(3) {
+            bottom: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Desktop navigation dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+        
+        .nav-dropdown-content {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            min-width: 200px;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 50;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .nav-dropdown:hover .nav-dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown-content a {
+            display: block;
+            padding: 10px 16px;
+            color: #374151;
+            text-decoration: none;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-dropdown-content a:hover {
+            background-color: #f0fdf4;
+            padding-left: 20px;
+            color: #065f46;
+        }
+        
+        /* Mobile navigation */
+        .mobile-nav {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .mobile-nav.active {
+            display: block;
+            max-height: 500px;
+        }
+        
+        /* Mobile dropdown */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f9fafb;
+            border-radius: 6px;
+            margin: 4px 0;
+        }
+        
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+        }
+        
+        /* Active page indicator */
+        .nav-active {
+            color: #0a5c36;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .nav-active::after {
+                bottom: 0;
+                left: 0;
+                transform: none;
+                width: 3px;
+                height: 100%;
+            }
+            
+            .mobile-dropdown-content a {
+                padding-left: 32px;
+            }
+        }
+        
+        /* Structure chart styling */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .org-level {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+        
+        .org-node {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin: 0.5rem;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .org-node:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .org-connector {
+            height: 40px;
+            width: 2px;
+            background-color: #0a5c36;
+            margin: 0 auto;
+        }
+        
+        /* Modal styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        
+        /* Membership cards */
+        .member-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+    <link rel="website icon" href="./images/logo-rohis.png">
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Header & Navigation - DIPERBAIKI -->
+    <header class="sticky top-0 z-50 navbar-header">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo Section - TIDAK DIUBAH TAPI DITAMBAH ANIMASI -->
+                <div class="flex items-center space-x-4 logo-container">
+                    <div class="flex items-center space-x-2">
+                        <img src="./images/images-removebg-preview.png" alt="Logo SMK" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                        <div class="h-8 md:h-12 w-px bg-gradient-to-b from-green-500 to-green-700"></div>
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                    </div>
+                    <div class="hidden md:block">
+                        <h1 class="text-lg md:text-xl font-bold text-green-800">Rohis SMK Hang Tuah 1 Jakarta</h1>
+                        <p class="text-xs md:text-sm text-gray-600">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                    <!-- Logo text untuk mobile -->
+                    <div class="md:hidden logo-text-mobile">
+                        <h1 class="text-sm font-bold text-green-800 truncate">Rohis SMK Hang Tuah 1</h1>
+                        <p class="text-xs text-gray-600 truncate">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                </div>
+                
+                <!-- Hamburger Menu untuk Mobile - DIPERBAIKI -->
+                <div class="hamburger md:hidden" id="hamburger-menu" aria-label="Toggle menu">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+                
+                <!-- Desktop Navigation - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+                <nav class="desktop-nav hidden md:block">
+                    <ul class="flex space-x-1">
+                        <li>
+                            <a href="./index.html" class="nav-link block px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-home mr-2 text-sm"></i>Beranda
+                            </a>
+                        </li>
+                        
+                        <li class="nav-dropdown relative">
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active">
+                                <i class="fas fa-user mr-2 text-sm"></i>Profil 
+                                <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-300"></i>
+                            </a>
+                            <div class="nav-dropdown-content">
+                                <a href="./fungsi.html" class="bg-green-50 text-green-700 font-medium">
+                                    <i class="fas fa-check-circle mr-2"></i>Fungsi dan Tujuan
+                                </a>
+                                <a href="./sejarah.html" class="hover:bg-green-50">
+                                    <i class="fas fa-history mr-2"></i>Sejarah
+                                </a>
+                                <a href="./struktur.html" class="hover:bg-green-50">
+                                    <i class="fas fa-sitemap mr-2"></i>Struktur Organisasi
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="kegiatan.html" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-calendar-alt mr-2 text-sm"></i>Kegiatan
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-trophy mr-2 text-sm"></i>Prestasi
+                            </a>
+                        </li>
+                        
+                        <!-- MENGHAPUS: Berita, Arsip, Tentang Sekolah -->
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Mobile Navigation Menu - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+            <div id="mobile-nav" class="mobile-nav md:hidden">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="./index.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-home text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Beranda</span>
+                        </a>
+                    </li>
+                    
+                    <li class="mobile-dropdown">
+                        <a href="#" class="flex items-center justify-between px-4 py-3 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active mobile-dropdown-toggle">
+                            <div class="flex items-center">
+                                <div class="w-8 text-center">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <span class="ml-3">Profil</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </a>
+                        <div class="mobile-dropdown-content">
+                            <a href="./fungsi.html" class="block px-4 py-3 pl-12 text-green-700 font-medium bg-green-50">
+                                <i class="fas fa-check-circle mr-3"></i>Fungsi dan Tujuan
+                            </a>
+                            <a href="./sejarah.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-history mr-3"></i>Sejarah
+                            </a>
+                            <a href="./struktur.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-sitemap mr-3"></i>Struktur Organisasi
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <a href="kegiatan.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-calendar-alt text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Kegiatan</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-trophy text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Prestasi</span>
+                        </a>
+                    </li>
+                    
+                    <!-- MENGHAPUS: Berita, Arsip, Tentang Sekolah -->
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="./index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-700">
+                            <i class="fas fa-home mr-2"></i>
+                            Beranda
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-green-700 md:ml-2">Profil</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <span class="ml-1 text-sm font-medium text-green-700 md:ml-2">Struktur Organisasi</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-green text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/IMG-20251210-WA0044.jpg" alt="Rohis Background" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="container mx-auto px-4 py-12 md:py-16 relative z-10 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">Struktur Organisasi</h1>
+            <h2 class="text-xl md:text-2xl font-light mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">Rohis Al Yusron SMK Hang Tuah 1 Jakarta</h2>
+            
+            <div class="flex justify-center space-x-4 mb-6" style="animation-delay: 0.4s;">
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+                <div class="w-8 h-1 bg-green-400 rounded-full"></div>
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+            </div>
+            
+            <p class="max-w-3xl mx-auto text-lg animate-fadeInUp" style="animation-delay: 0.6s;">
+                Kepengurusan Rohis Al Yusron periode 2025-2026 yang siap membawa organisasi menuju prestasi lebih baik.
+            </p>
+        </div>
+        
+
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Organization Structure -->
+        <div class="max-w-6xl mx-auto mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Struktur Organisasi Rohis Al Yusron</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Berikut adalah struktur kepengurusan Rohis Al Yusron SMK Hang Tuah 1 Jakarta periode 2023/2024. 
+                    Klik pada posisi untuk melihat detail pengurus.
+                </p>
+            </div>
+            
+            <!-- Organization Chart -->
+            <div class="org-chart animate-fadeInUp">
+                <!-- Level 1: Ketua -->
+                <div class="org-level">
+                    <div class="org-node cursor-pointer" onclick="openModal('ketua')">
+                        <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-green-100">
+                            <img src="./images/anggota/thoriq.jpg" alt="Ketua" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-lg text-green-800 mb-1">Ketua Rohis</h3>
+                        <p class="text-gray-600 mb-2">M. Sulaiman At Thoriq</p>
+                        <div class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full inline-block">
+                            <i class="fas fa-crown mr-1"></i> Pimpinan
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connector -->
+                <div class="org-connector"></div>
+                
+                <!-- Level 2: Wakil Ketua, Sekretaris, Bendahara -->
+                <div class="org-level">
+
+                    
+                    <div class="org-node cursor-pointer" onclick="openModal('sekretaris')">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-4 border-green-100">
+                            <img src="./images/anggota/galih.jpg" alt="Sekretaris" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 mb-1">Sekretaris</h3>
+                        <p class="text-gray-600 text-sm mb-2">Muhammad Galih Syaputra</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            Administrasi
+                        </div>
+                    </div>
+                    
+                    <div class="org-node cursor-pointer" onclick="openModal('sekretaris')">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-4 border-green-100">
+                            <img src="./images/anggota/zahwa.jpg" alt="Sekretaris" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 mb-1">Sekretaris</h3>
+                        <p class="text-gray-600 text-sm mb-2">Zahwa Sheisa Putri</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            Administrasi
+                        </div>
+                    </div>                    
+                    <div class="org-node cursor-pointer" onclick="openModal('wakil-ketua')">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-4 border-green-100">
+                            <img src="./images/anggota/nurul.jpg" alt="Wakil Ketua" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 mb-1">Wakil Ketua</h3>
+                        <p class="text-gray-600 text-sm mb-2">Nurul Asifah Putri</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            Koordinator
+                        </div>
+                    </div>
+
+                    <div class="org-node cursor-pointer" onclick="openModal('bendahara')">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-4 border-green-100">
+                            <img src="./images/anggota/raniya.jpg" alt="Bendahara" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 mb-1">Bendahara</h3>
+                        <p class="text-gray-600 text-sm mb-2">Raniya Shofa</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            Keuangan
+                        </div>
+                    </div>
+                    <div class="org-node cursor-pointer" onclick="openModal('bendahara')">
+                        <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-4 border-green-100">
+                            <img src="./images/anggota/zahra.jpg" alt="Bendahara" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 mb-1">Bendahara</h3>
+                        <p class="text-gray-600 text-sm mb-2">Zahra Aldinah</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            Keuangan
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connector -->
+                <div class="org-connector"></div>
+                
+                <!-- Level 3: Divisi-divisi -->
+                <div class="org-level">
+                    <div class="org-node cursor-pointer" onclick="openModal('divisi-dokumentasi')">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-3 border-green-100">
+                            <img src="./images/anggota/rafi.jpg" alt="Divisi Dokumentasi" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 text-sm mb-1">Divisi Dokumentasi</h3>
+                        <p class="text-gray-600 text-xs mb-2">Fotografi & Videografi</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            5 Anggota
+                        </div>
+                    </div>
+                    
+                    <div class="org-node cursor-pointer" onclick="openModal('divisi-pendidikan')">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-3 border-green-100">
+                            <img src="./images/anggota/angel.jpg" alt="Divisi Pendidikan" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 text-sm mb-1">Divisi Pendidikan</h3>
+                        <p class="text-gray-600 text-xs mb-2">Dakwah & Kajian</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            4 Anggota
+                        </div>
+                    </div>
+                    
+                    <div class="org-node cursor-pointer" onclick="openModal('divisi-sosial')">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-3 border-green-100">
+                            <img src="./images/anggota/rizky.jpg" alt="Divisi Sosial" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 text-sm mb-1">Divisi Sosial & Humas</h3>
+                        <p class="text-gray-600 text-xs mb-2">Hubungan Masyarakat</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            4 Anggota
+                        </div>
+                    </div>
+                    
+                    <div class="org-node cursor-pointer" onclick="openModal('divisi-ti')">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-3 border-green-100">
+                            <img src="./images/anggota/Rafiq.jpg" alt="Divisi TI" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-green-800 text-sm mb-1">Divisi Teknologi Informasi</h3>
+                        <p class="text-gray-600 text-xs mb-2">Media Digital</p>
+                        <div class="bg-green-50 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                            2 Anggota
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Anggota Rohis -->
+        <div class="max-w-6xl mx-auto mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Anggota Rohis Al Yusron</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Berikut adalah daftar anggota Rohis Al Yusron SMK Hang Tuah 1 Jakarta yang aktif berkontribusi dalam setiap kegiatan.
+                </p>
+            </div>
+            
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center mb-8">
+                <button class="filter-btn active bg-green-700 text-white px-5 py-2 rounded-lg mx-1 mb-2" data-filter="all">
+                    Semua Anggota
+                </button>
+                <button class="filter-btn bg-green-100 text-green-800 px-5 py-2 rounded-lg mx-1 mb-2 hover:bg-green-200 transition" data-filter="pengurus">
+                    Pengurus Inti
+                </button>
+                <button class="filter-btn bg-green-100 text-green-800 px-5 py-2 rounded-lg mx-1 mb-2 hover:bg-green-200 transition" data-filter="divisi">
+                    Anggota Divisi
+                </button>
+                <button class="filter-btn bg-green-100 text-green-800 px-5 py-2 rounded-lg mx-1 mb-2 hover:bg-green-200 transition" data-filter="aktif">
+                Anggota Aktif
+                </button>
+            </div>
+            
+            <!-- Members Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="members-grid">
+                <!-- Member cards will be dynamically filtered -->
+                <!-- Data is defined in the JavaScript section below -->
+            </div>
+        </div>
+        
+        <!-- Informasi Keanggotaan -->
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-lg p-8 animate-fadeInUp">
+                <div class="flex items-center mb-6">
+                    <div class="bg-green-100 p-4 rounded-full mr-4">
+                        <i class="fas fa-info-circle text-3xl text-green-700"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-green-800">Informasi Keanggotaan</h2>
+                        <p class="text-gray-600">Tata cara menjadi anggota Rohis Al Yusron</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-green-50 p-6 rounded-xl">
+                        <h3 class="font-bold text-lg text-green-800 mb-3">Syarat Keanggotaan</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
+                                <span>Merupakan siswa aktif SMK Hang Tuah 1 Jakarta</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
+                                <span>Beragama Islam dan memiliki kemauan untuk belajar</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
+                                <span>Bersedia mengikuti kegiatan Rohis dengan tertib</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
+                                <span>Mendapat izin dari orang tua/wali</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-50 p-6 rounded-xl">
+                        <h3 class="font-bold text-lg text-green-800 mb-3">Prosedur Pendaftaran</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-green-600 mt-1 mr-2"></i>
+                                <span>Mengisi formulir pendaftaran di sekretariat Rohis</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-green-600 mt-1 mr-2"></i>
+                                <span>Mengikuti proses seleksi dan wawancara</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-green-600 mt-1 mr-2"></i>
+                                <span>Mengikuti masa orientasi anggota baru</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-green-600 mt-1 mr-2"></i>
+                                <span>Dilantik menjadi anggota Rohis Al Yusron</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-green text-white p-6 rounded-xl">
+                    <h3 class="font-bold text-xl mb-3">Bergabunglah dengan Rohis Al Yusron!</h3>
+                    <p class="mb-4">
+                        Mari bersama-sama membangun generasi muslim yang berakhlak mulia, berwawasan luas, dan berkontribusi positif bagi sekolah dan masyarakat.
+                    </p>
+                    <a href="#" class="inline-block bg-white text-green-800 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                        <i class="fas fa-user-plus mr-2"></i>Daftar Menjadi Anggota
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modals for Organization Structure Details -->
+    <!-- Ketua Modal -->
+    <div id="modal-ketua" class="modal-overlay">
+        <div class="modal-content">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-green-800">Ketua Rohis Al Yusron</h3>
+                    <button class="text-gray-500 hover:text-gray-700 text-xl" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center md:items-start mb-6">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-4 md:mb-0 md:mr-6 border-4 border-green-100">
+                        <img src="./images/anggota/thoriq.jpg" alt="Ketua" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-2xl font-bold text-green-800 mb-2">M. Sulaiman At Thoriq</h4>
+                        <p class="text-gray-600 mb-3">Ketua Rohis Al Yusron Periode 2023/2024</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Kelas: XI DKV 1</span>
+                            <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Angkatan: 2024</span>
+                        </div>
+                        
+                        <p class="text-gray-700">
+                            Bertanggung jawab atas seluruh kegiatan Rohis Al Yusron, memimpin rapat pengurus, 
+                            mengkoordinasikan semua divisi, dan menjadi perwakilan Rohis dalam kegiatan sekolah.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-4">
+                    <h5 class="font-bold text-green-800 mb-2">Kontak:</h5>
+                    <div class="flex items-center text-gray-600 mb-1">
+                        <i class="fas fa-user mr-2"></i>
+                        <span>Ketua Rohis Al Yusron</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- More modals can be added for other positions -->
+    
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 mr-3">
+                        <div>
+                            <h3 class="font-bold text-xl">Rohis Al Yusron</h3>
+                            <p class="text-green-300 text-sm">SMK Hang Tuah 1 Jakarta</p>
+                        </div>
+                    </div>
+                    <p class="text-green-200">
+                        Wadah pembinaan keislaman siswa muslim di SMK Hang Tuah 1 Jakarta, 
+                        membentuk generasi beriman, berilmu, dan berakhlak mulia.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Beranda</a></li>
+                        <li><a href="sejarah.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Profil Organisasi</a></li>
+                        <li><a href="kegiatan.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Kegiatan Rutin</a></li>
+                        <li><a href="prestasi.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Prestasi</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">SMK Hang Tuah 1 Jakarta, Jl. Tabah Raya No. 1, RT.1/RW.9, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Kota Administrasi Jakarta Utara, 14240.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 812-9736-9393 (Ust. Imam Royani, S.Pd.I) </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 857-1884-4700 (Ust. Hendri Tris Munandar, S.Pd) </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-800 pt-8 text-center">
+                <p class="text-green-300">© 2025 Rohis Al Yusron SMK Hang Tuah 1 Jakarta. All rights reserved.</p>
+                <p class="text-green-400 text-sm mt-2">Bersatu dalam Islam, Maju dalam Prestasi</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(`modal-${modalId}`).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => modal.classList.remove('active'));
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        });
+        
+        // Members data
+        const members = [
+    // Pengurus Inti
+    { id: 1, name: "Muhammad Sulaiman At Thoriq", position: "Ketua", class: "XI DKV 1", category: "pengurus", image: "./images/anggota/thoriq.jpg" },
+    { id: 2, name: "Nurul Asifah Putri", position: "Wakil Ketua", class: "XI MP 1", category: "pengurus", image: "./images/anggota/nurul.jpg" },
+    { id: 3, name: "Zahwa Sheisa Putri", position: "Sekretaris", class: "XI DKV 1", category: "pengurus", image: "./images/anggota/zahwa.jpg" },
+    { id: 4, name: "Muhammad Galih Syaputra", position: "Sekretaris", class: "X MP 2", category: "pengurus", image: "./images/anggota/galih.jpg" },
+    { id: 5, name: "Zhaara Aldinah", position: "Bendahara", class: "XI MP 2", category: "pengurus", image: "./images/anggota/zahra.jpg" },
+    { id: 6, name: "Raniya Shofa", position: "Bendahara", class: "X BR", category: "pengurus", image: "./images/anggota/raniya.jpg" },
+    
+    //Divisi Dokumentasi
+    { id: 7, name: "Rafi Fiqi Ibrahim", position: "Dokumentasi", class: "XI DKV 2", category: "divisi", image: "./images/anggota/rafi.jpg" },
+    { id: 8, name: "Farhan Fahreza", position: "Dokumentasi", class: "XI DKV 1", category: "divisi", image: "./images/anggota/farhan.jpg" },
+    { id: 9, name: "Badria Nurul", position: "Dokumentasi", class: "XI MP 1", category: "divisi", image: "./images/anggota/badria.jpg" },
+    { id: 10, name: "Zahirah Okto Balqis", position: "Dokumentasi", class: "XI MP 1", category: "divisi", image: "./images/anggota/zahirah.jpg" },
+    { id: 11, name: "Azzahra Putri Khairani", position: "Dokumentasi", class: "X DKV 2", category: "divisi", image: "./images/anggota/azzahra.jpg" },
+    
+    //Divisi Pendidikan dan Dakwah
+    { id: 12, name: "Angelina Oktavia", position: "Pendidikan dan Dakwah", class: "XI MP 2", category: "divisi", image: "./images/anggota/angel.jpg" },
+    { id: 13, name: "Cintana Moi", position: "Pendidikan dan Dakwah", class: "XI MP 2", category: "divisi", image: "./images/anggota/amoy.jpg" },            
+    { id: 14, name: "Dzulhivan", position: "Pendidikan dan Dakwah", class: "XI AKL", category: "divisi", image: "./images/anggota/ivan.jpg" },
+    
+    //Divisi Sosial dan Humas
+    { id: 16, name: "Rizky Fadilah Syam", position: "Sosial dan Humas", class: "X RPL", category: "divisi", image: "./images/anggota/rizky.jpg" },
+    { id: 17, name: "Bumi Putra Almori", position: "Sosial dan Humas", class: "X MP 2", category: "divisi", image: "./images/anggota/mori.jpg" },
+    { id: 18, name: "Hilyatunnisa", position: "Sosial dan Humas", class: "X MP 2", category: "divisi", image: "./images/anggota/hilya.jpg" },
+    { id: 19, name: "Naisya Julia", position: "Sosial dan Humas", class: "XI AKL", category: "divisi", image: "./images/anggota/naisya.jpg" },
+    
+    { id: 21, name: "Affan Wisnu Wardana", position: "Teknologi dan Informasi", class: "X RPL", category: "divisi", image: "./images/anggota/affan.jpg" },
+    
+    //Anggota Aktif Lainnya
+    { id: 22, name: "Muhammad Rafiq Azizi", position: "Anggota", class: "XI RPL", category: "aktif", image: "./images/anggota/rafiq.jpg" },
+    { id: 23, name: "Aisyah Hanan", position: "Anggota", class: "X AKL 2", category: "aktif", image: "./images/anggota/aisyah.jpg" },
+    { id: 24, name: "Maura Noventa", position: "Anggota", class: "X AKL 2", category: "aktif", image: "./images/anggota/maura.jpg" },
+    { id: 25, name: "Keisya Wulan", position: "Anggota", class: "XI AKL", category: "aktif", image: "./images/anggota/keisya.jpg" },
+    { id: 26, name: "Nayla Harunnisa Zein", position: "Anggota", class: "X AKL 2", category: "aktif", image: "./images/anggota/nayla.jpg" },
+    { id: 27, name: "Yati Faradillah", position: "Anggota", class: "X AKL 2", category: "aktif", image: "./images/anggota/yati.jpg" },
+    { id: 28, name: "Syaikah Nikeisha", position: "Anggota", class: "X AKL 2", category: "aktif", image: "./images/anggota/syaikah.jpg" },
+];
+        
+        // Render members
+        function renderMembers(filter = 'all') {
+            const grid = document.getElementById('members-grid');
+            grid.innerHTML = '';
+            
+            const filteredMembers = filter === 'all' 
+                ? members 
+                : members.filter(member => member.category === filter);
+            
+            filteredMembers.forEach(member => {
+                const memberCard = document.createElement('div');
+                memberCard.className = 'member-card';
+                memberCard.innerHTML = `
+                    <div class="p-5">
+                        <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-green-100">
+                            <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-lg text-green-800 text-center mb-1">${member.name}</h3>
+                        <p class="text-gray-600 text-center text-sm mb-2">${member.position}</p>
+                        <p class="text-gray-500 text-center text-xs mb-3">${member.class}</p>
+                        <div class="flex justify-center">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+                                ${member.category === 'pengurus' ? 'Pengurus Inti' : 
+                                  member.category === 'divisi' ? 'Pengurus Divisi' : 
+                                  'Anggota Aktif'}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(memberCard);
+            });
+        }
+        
+        // Filter members
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (hamburgerMenu && mobileNav) {
+                hamburgerMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                });
+            }
+            
+            // Mobile dropdown toggle
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownContent = this.nextElementSibling;
+                    const chevron = this.querySelector('.fa-chevron-down');
+                    
+                    // Toggle dropdown
+                    dropdownContent.classList.toggle('active');
+                    
+                    // Rotate chevron
+                    if (chevron) {
+                        chevron.classList.toggle('rotate-180');
+                    }
+                    
+                    // Close other dropdowns
+                    mobileDropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            const otherContent = otherToggle.nextElementSibling;
+                            const otherChevron = otherToggle.querySelector('.fa-chevron-down');
+                            if (otherContent) {
+                                otherContent.classList.remove('active');
+                            }
+                            if (otherChevron) {
+                                otherChevron.classList.remove('rotate-180');
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('#mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.classList.contains('mobile-dropdown-toggle')) {
+                        if (hamburgerMenu && mobileNav) {
+                            hamburgerMenu.classList.remove('active');
+                            mobileNav.classList.remove('active');
+                        }
+                        
+                        // Close all dropdowns
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        
+                        // Reset all chevrons
+                        document.querySelectorAll('.mobile-dropdown-toggle .fa-chevron-down').forEach(chevron => {
+                            chevron.classList.remove('rotate-180');
+                        });
+                    }
+                });
+            });
+            
+            // Render members initially
+            renderMembers('all');
+            
+            // Add event listeners to filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-green-700', 'text-white');
+                        btn.classList.add('bg-green-100', 'text-green-800');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-green-700', 'text-white');
+                    this.classList.remove('bg-green-100', 'text-green-800');
+                    
+                    // Filter members
+                    const filter = this.getAttribute('data-filter');
+                    renderMembers(filter);
+                });
+            });
+            
+            // Simple animation on scroll
+            const animateElements = document.querySelectorAll('.animate-fadeInUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kegiatan - Rohis SMK Hang Tuah 1 Jakarta</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS for animations -->
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Custom gradient background */
+        .bg-gradient-green {
+            background: linear-gradient(135deg, #0a5c36 0%, #1a7940 100%);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #0a5c36;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1a7940;
+        }
+        
+        /* CSS untuk Navbar - SAMA DENGAN struktur.html */
+        /* Hamburger menu icon */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .hamburger-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-line:nth-child(1) {
+            top: 0;
+        }
+        
+        .hamburger-line:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hamburger-line:nth-child(3) {
+            bottom: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Desktop navigation dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+        
+        .nav-dropdown-content {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            min-width: 200px;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 50;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .nav-dropdown:hover .nav-dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown-content a {
+            display: block;
+            padding: 10px 16px;
+            color: #374151;
+            text-decoration: none;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-dropdown-content a:hover {
+            background-color: #f0fdf4;
+            padding-left: 20px;
+            color: #065f46;
+        }
+        
+        /* Mobile navigation */
+        .mobile-nav {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .mobile-nav.active {
+            display: block;
+            max-height: 500px;
+        }
+        
+        /* Mobile dropdown */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f9fafb;
+            border-radius: 6px;
+            margin: 4px 0;
+        }
+        
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+        }
+        
+        /* Active page indicator */
+        .nav-active {
+            color: #0a5c36;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 3px;
+            background-color: #0a5c36;
+            border-radius: 2px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .nav-active::after {
+                bottom: 0;
+                left: 0;
+                transform: none;
+                width: 3px;
+                height: 100%;
+            }
+            
+            .mobile-dropdown-content a {
+                padding-left: 32px;
+            }
+        }
+        
+        /* Kode khusus untuk halaman kegiatan */
+        .activity-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .activity-card:hover {
+            border-color: #0a5c36;
+            box-shadow: 0 10px 25px rgba(10, 92, 54, 0.1);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-rutin {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .badge-tahunan {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .badge-khusus {
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+        
+        .badge-keputrian {
+            background-color: #fce7f3;
+            color: #9d174d;
+        }
+        
+        .schedule-day {
+            border-left: 4px solid #0a5c36;
+            padding-left: 1rem;
+        }
+        
+        .schedule-day.active {
+            background-color: #f0fdf4;
+        }
+        
+        /* Image hover effect */
+        .activity-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .activity-card:hover .activity-image {
+            transform: scale(1.05);
+        }
+        
+        /* Timeline for weekly agenda */
+        .timeline-weekly {
+            position: relative;
+        }
+        
+        .timeline-weekly::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #0a5c36;
+            border-radius: 3px;
+        }
+        
+        .timeline-weekly-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-weekly-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-weekly-icon {
+            position: absolute;
+            left: 8px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border: 3px solid #0a5c36;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        
+        .timeline-weekly-icon i {
+            color: #0a5c36;
+            font-size: 14px;
+        }
+        
+        /* Schedule highlight */
+        .schedule-highlight {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 4px solid #0a5c36;
+        }
+    </style>
+    <link rel="website icon" href="./images/logo-rohis.png">
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Header & Navigation - SAMA DENGAN struktur.html -->
+    <header class="sticky top-0 z-50 navbar-header">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo Section -->
+                <div class="flex items-center space-x-4 logo-container">
+                    <div class="flex items-center space-x-2">
+                        <img src="./images/images-removebg-preview.png" alt="Logo SMK" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                        <div class="h-8 md:h-12 w-px bg-gradient-to-b from-green-500 to-green-700"></div>
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 md:w-16 md:h-16 drop-shadow-sm">
+                    </div>
+                    <div class="hidden md:block">
+                        <h1 class="text-lg md:text-xl font-bold text-green-800">Rohis SMK Hang Tuah 1 Jakarta</h1>
+                        <p class="text-xs md:text-sm text-gray-600">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                    <!-- Logo text untuk mobile -->
+                    <div class="md:hidden logo-text-mobile">
+                        <h1 class="text-sm font-bold text-green-800 truncate">Rohis SMK Hang Tuah 1</h1>
+                        <p class="text-xs text-gray-600 truncate">Bersatu dalam Islam, Maju dalam Prestasi</p>
+                    </div>
+                </div>
+                
+                <!-- Hamburger Menu untuk Mobile -->
+                <div class="hamburger md:hidden" id="hamburger-menu" aria-label="Toggle menu">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </div>
+                
+                <!-- Desktop Navigation - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+                <nav class="desktop-nav hidden md:block">
+                    <ul class="flex space-x-1">
+                        <li>
+                            <a href="./index.html" class="nav-link block px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-home mr-2 text-sm"></i>Beranda
+                            </a>
+                        </li>
+                        
+                        <li class="nav-dropdown relative">
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-user mr-2 text-sm"></i>Profil 
+                                <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-300"></i>
+                            </a>
+                            <div class="nav-dropdown-content">
+                                <a href="./fungsi.html" class="hover:bg-green-50">
+                                    <i class="fas fa-check-circle mr-2"></i>Fungsi dan Tujuan
+                                </a>
+                                <a href="./sejarah.html" class="hover:bg-green-50">
+                                    <i class="fas fa-history mr-2"></i>Sejarah
+                                </a>
+                                <a href="./struktur.html" class="hover:bg-green-50">
+                                    <i class="fas fa-sitemap mr-2"></i>Struktur Organisasi
+                                </a>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="kegiatan.html" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active">
+                                <i class="fas fa-calendar-alt mr-2 text-sm"></i>Kegiatan
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="nav-link flex items-center px-4 py-2.5 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                                <i class="fas fa-trophy mr-2 text-sm"></i>Prestasi
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- Mobile Navigation Menu - MENGHAPUS BERITA, ARSIP, TENTANG SEKOLAH -->
+            <div id="mobile-nav" class="mobile-nav md:hidden">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="./index.html" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-home text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Beranda</span>
+                        </a>
+                    </li>
+                    
+                    <li class="mobile-dropdown">
+                        <a href="#" class="flex items-center justify-between px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300 mobile-dropdown-toggle">
+                            <div class="flex items-center">
+                                <div class="w-8 text-center">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <span class="ml-3">Profil</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                        </a>
+                        <div class="mobile-dropdown-content">
+                            <a href="./fungsi.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-check-circle mr-3"></i>Fungsi dan Tujuan
+                            </a>
+                            <a href="./sejarah.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-history mr-3"></i>Sejarah
+                            </a>
+                            <a href="./struktur.html" class="block px-4 py-3 pl-12 hover:bg-green-50">
+                                <i class="fas fa-sitemap mr-3"></i>Struktur Organisasi
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <a href="kegiatan.html" class="flex items-center px-4 py-3 font-medium text-green-800 bg-gradient-to-r from-green-50 to-green-100 rounded-lg transition-all duration-300 nav-active">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-calendar-alt text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Kegiatan</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-3 font-medium text-green-800 hover:bg-green-50 rounded-lg transition-all duration-300">
+                            <div class="w-8 text-center">
+                                <i class="fas fa-trophy text-green-600"></i>
+                            </div>
+                            <span class="ml-3">Prestasi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="./index.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-700">
+                            <i class="fas fa-home mr-2"></i>
+                            Beranda
+                        </a>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                            <span class="ml-1 text-sm font-medium text-green-700 md:ml-2">Kegiatan</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-green text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/IMG-20251210-WA0044.jpg" alt="Rohis Background" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="container mx-auto px-4 py-12 md:py-16 relative z-10 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">Kegiatan Rohis</h1>
+            <h2 class="text-xl md:text-2xl font-light mb-6 animate-fadeInUp" style="animation-delay: 0.2s;">Al Yusron SMK Hang Tuah 1 Jakarta</h2>
+            
+            <div class="flex justify-center space-x-4 mb-6" style="animation-delay: 0.4s;">
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+                <div class="w-8 h-1 bg-green-400 rounded-full"></div>
+                <div class="w-12 h-1 bg-green-300 rounded-full"></div>
+            </div>
+            
+            <p class="max-w-3xl mx-auto text-lg animate-fadeInUp" style="animation-delay: 0.6s;">
+                Berbagai kegiatan keislaman yang dilaksanakan secara rutin dan insidental untuk mengembangkan potensi spiritual siswa.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Weekly Agenda - BARU DITAMBAHKAN (dari informasi WhatsApp) -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 animate-fadeInUp">
+                <div class="inline-flex items-center bg-green-50 text-green-800 px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-calendar-check mr-2"></i>
+                    <span class="font-bold">AGENDA TERBARU</span>
+                </div>
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Agenda Ekskul Rohis 2025-2026</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Berikut adalah jadwal kegiatan ekskul Rohis Al Yusron periode 2025-2026 yang telah disusun oleh pembina Rohis.
+                </p>
+                <div class="mt-4 text-sm text-gray-500">
+                    <i class="fas fa-user-tie mr-1"></i> Dibuat oleh Pak Hendri, 22/07/24
+                </div>
+            </div>
+            
+            <!-- Weekly Agenda Timeline -->
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 md:p-8 animate-fadeInUp">
+                <div class="flex items-center mb-8">
+                    <div class="bg-green-100 p-4 rounded-full mr-4">
+                        <i class="fas fa-calendar-alt text-3xl text-green-700"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-green-800">Jadwal Bulanan Ekskul Rohis</h3>
+                        <p class="text-gray-600">Siklus kegiatan bulanan yang berulang setiap bulan</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-weekly">
+                    <!-- Minggu Pertama -->
+                    <div class="timeline-weekly-item">
+                        <div class="timeline-weekly-icon">
+                            <i class="fas fa-drum"></i>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex flex-wrap items-center justify-between mb-3">
+                                <h4 class="text-xl font-bold text-green-800">Minggu Pertama</h4>
+                                <span class="badge badge-rutin">Kegiatan Rutin</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-green-700 mb-2">Hadroh</h3>
+                            <p class="text-gray-700 mb-4">
+                                Latihan seni musik islami dengan alat musik rebana, melatih keterampilan bermusik sambil memperdalam nilai-nilai keislaman melalui syair-syair pujian kepada Allah dan Rasul.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-music mr-1"></i> Seni Islami
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-users mr-1"></i> Kelompok
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-drum mr-1"></i> Rebana
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Minggu Kedua -->
+                    <div class="timeline-weekly-item">
+                        <div class="timeline-weekly-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex flex-wrap items-center justify-between mb-3">
+                                <h4 class="text-xl font-bold text-green-800">Minggu Kedua</h4>
+                                <span class="badge badge-rutin">Kegiatan Rutin</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-green-700 mb-2">Panahan</h3>
+                            <p class="text-gray-700 mb-4">
+                                Kegiatan olahraga sunnah yang diajarkan Rasulullah SAW. Melatih konsentrasi, kesabaran, dan ketepatan sambil mengikuti sunnah Nabi.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-sun mr-1"></i> Sunnah Nabi
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-bullseye mr-1"></i> Konsentrasi
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-running mr-1"></i> Olahraga
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Minggu Ketiga -->
+                    <div class="timeline-weekly-item">
+                        <div class="timeline-weekly-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex flex-wrap items-center justify-between mb-3">
+                                <h4 class="text-xl font-bold text-green-800">Minggu Ketiga</h3>
+                                <span class="badge badge-rutin">Kegiatan Rutin</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-green-700 mb-2">Public Speaking & Hadroh</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Public Speaking:</strong> Melatih kemampuan berbicara di depan umum, presentasi, dan berdakwah dengan efektif.<br>
+                                <strong>Hadroh:</strong> Lanjutan latihan minggu pertama untuk pengembangan lebih lanjut.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-microphone mr-1"></i> Public Speaking
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-drum mr-1"></i> Hadroh
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-comments mr-1"></i> Komunikasi
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Minggu Keempat -->
+                    <div class="timeline-weekly-item">
+                        <div class="timeline-weekly-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl hover-lift">
+                            <div class="flex flex-wrap items-center justify-between mb-3">
+                                <h4 class="text-xl font-bold text-green-800">Minggu Keempat</h4>
+                                <span class="badge badge-rutin">Kegiatan Rutin</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-green-700 mb-2">Pendalaman Kitab</h3>
+                            <p class="text-gray-700 mb-4">
+                                Kajian mendalam terhadap kitab-kitab Islam klasik dan kontemporer untuk memperkuat pemahaman agama, akidah, dan syariat Islam.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-book mr-1"></i> Kajian Kitab
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-brain mr-1"></i> Pemahaman Agama
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                    <i class="fas fa-graduation-cap mr-1"></i> Ilmu Islam
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-blue-600 mt-1 mr-3 text-lg"></i>
+                        <div>
+                            <h4 class="font-bold text-blue-800 mb-1">Informasi Penting</h4>
+                            <p class="text-blue-700 text-sm">
+                                • Jadwal dapat berubah sesuai dengan kondisi dan kebutuhan<br>
+                                • Setiap anggota diharapkan mengikuti minimal 3 dari 4 kegiatan setiap bulannya<br>
+                                • Pendaftaran kegiatan melalui koordinator masing-masing kelas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Activities Content - DISESUAIKAN dengan informasi baru -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Kegiatan Rutin Section -->
+        <section id="rutin" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12 animate-fadeInUp">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Kegiatan Rutin Rohis</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Kegiatan yang dilaksanakan secara berkala untuk pembinaan berkelanjutan anggota Rohis.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Hadroh -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift activity-card animate-fadeInUp">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 relative overflow-hidden">
+                            <img src="images/foto2.jpg" 
+                                 alt="Hadroh" 
+                                 class="w-full h-48 object-cover activity-image">
+                            <div class="absolute top-4 left-4">
+                                <span class="badge badge-rutin">Minggu 1 & 3</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-xl font-bold text-green-800 mb-2">Hadroh</h3>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Latihan seni musik islami dengan rebana, melatih keterampilan bermusik sambil memperdalam nilai-nilai keislaman.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <i class="fas fa-clock mr-2 text-green-600"></i>
+                                <span>Minggu pertama & ketiga setiap bulan</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Rebana</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Seni Islami</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Kelompok</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panahan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift activity-card animate-fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 relative overflow-hidden">
+                            <img src="images/foto1.jpg" 
+                                 alt="Panahan" 
+                                 class="w-full h-48 object-cover activity-image">
+                            <div class="absolute top-4 left-4">
+                                <span class="badge badge-rutin">Minggu 2</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-xl font-bold text-green-800 mb-2">Panahan</h3>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Olahraga sunnah Rasulullah yang melatih konsentrasi, kesabaran, dan ketepatan.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <i class="fas fa-clock mr-2 text-green-600"></i>
+                                <span>Minggu kedua setiap bulan</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Sunnah Nabi</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Olahraga</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Konsentrasi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Public Speaking -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift activity-card animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 relative overflow-hidden">
+                            <img src="images/foto3.jpg" 
+                                 alt="Public Speaking" 
+                                 class="w-full h-48 object-cover activity-image">
+                            <div class="absolute top-4 left-4">
+                                <span class="badge badge-rutin">Minggu 3</span>
+                            </div>
+                        </div>
+                        <div class="md:w-3/5 p-6">
+                            <h3 class="text-xl font-bold text-green-800 mb-2">Public Speaking</h3>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Melatih kemampuan berbicara di depan umum, presentasi, dan teknik berdakwah yang efektif.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <i class="fas fa-clock mr-2 text-green-600"></i>
+                                <span>Minggu ketiga setiap bulan</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Komunikasi</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Presentasi</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Dakwah</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Kegiatan Tambahan Section -->
+        <section id="tambahan" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12 animate-fadeInUp">
+                <h2 class="text-3xl font-bold text-green-800 mb-4">Kegiatan Tambahan</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Kegiatan pendukung yang dilaksanakan secara insidental untuk melengkapi program utama.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Istighotsah Pagi -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover-lift activity-card animate-fadeInUp">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-pray text-xl text-blue-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Istighotsah Pagi</h3>
+                            <p class="text-gray-600 text-sm">Doa bersama sebelum pelajaran</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 text-sm">
+                        Doa bersama setiap pagi untuk memohon keberkahan dalam menuntut ilmu.
+                    </p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>
+                        <span>Setiap hari Senin - Jumat</span>
+                    </div>
+                </div>
+                
+                <!-- Kajian Rutin -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover-lift activity-card animate-fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-book text-xl text-green-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Kajian Rutin</h3>
+                            <p class="text-gray-600 text-sm">Pembinaan keislaman mingguan</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 text-sm">
+                        Kajian keislaman dengan tema-tema aktual yang relevan dengan kehidupan remaja muslim.
+                    </p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>
+                        <span>Setiap Jumat Ba'da Dzuhur</span>
+                    </div>
+                </div>
+                
+                <!-- Bakti Sosial -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover-lift activity-card animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-hands-helping text-xl text-yellow-700"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-green-800">Bakti Sosial</h3>
+                            <p class="text-gray-600 text-sm">Pengabdian kepada masyarakat</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 text-sm">
+                        Kegiatan sosial untuk melatih kepedulian dan empati siswa terhadap lingkungan sekitar.
+                    </p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>
+                        <span>Setiap 3 bulan sekali</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Schedule Section -->
+        <section class="py-12 bg-gray-50 rounded-2xl mb-12">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8 animate-fadeInUp">
+                    <h2 class="text-3xl font-bold text-green-800 mb-4">Jadwal Kegiatan Bulanan</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Rangkuman jadwal kegiatan Rohis Al Yusron berdasarkan agenda bulanan
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 animate-fadeInUp">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-green-50">
+                                    <th class="py-3 px-4 text-left text-green-800 font-bold">Minggu Ke</th>
+                                    <th class="py-3 px-4 text-left text-green-800 font-bold">Kegiatan Utama</th>
+                                    <th class="py-3 px-4 text-left text-green-800 font-bold">Waktu</th>
+                                    <th class="py-3 px-4 text-left text-green-800 font-bold">Tempat</th>
+                                    <th class="py-3 px-4 text-left text-green-800 font-bold">Penanggung Jawab</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100 hover:bg-green-50">
+                                    <td class="py-3 px-4 font-medium text-green-800">Minggu 1</td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-semibold">Hadroh</div>
+                                        <div class="text-xs text-gray-500">Latihan seni musik islami</div>
+                                    </td>
+                                    <td class="py-3 px-4">14.00 - 16.00</td>
+                                    <td class="py-3 px-4">Aula Sekolah</td>
+                                    <td class="py-3 px-4">Divisi Seni</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-green-50">
+                                    <td class="py-3 px-4 font-medium text-green-800">Minggu 2</td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-semibold">Panahan</div>
+                                        <div class="text-xs text-gray-500">Olahraga sunnah</div>
+                                    </td>
+                                    <td class="py-3 px-4">14.00 - 16.00</td>
+                                    <td class="py-3 px-4">Lapangan Sekolah</td>
+                                    <td class="py-3 px-4">Ust. Hendri Tris</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-green-50">
+                                    <td class="py-3 px-4 font-medium text-green-800">Minggu 3</td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-semibold">Public Speaking & Hadroh</div>
+                                        <div class="text-xs text-gray-500">Pelatihan komunikasi & musik</div>
+                                    </td>
+                                    <td class="py-3 px-4">14.00 - 16.30</td>
+                                    <td class="py-3 px-4">Ruang Multimedia</td>
+                                    <td class="py-3 px-4">Divisi Pendidikan & Seni</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-green-50">
+                                    <td class="py-3 px-4 font-medium text-green-800">Minggu 4</td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-semibold">Pendalaman Kitab</div>
+                                        <div class="text-xs text-gray-500">Kajian keislaman mendalam</div>
+                                    </td>
+                                    <td class="py-3 px-4">14.00 - 16.00</td>
+                                    <td class="py-3 px-4">Musholla</td>
+                                    <td class="py-3 px-4">Ust. Imam Royani</td>
+                                </tr>
+                                <tr class="hover:bg-green-50">
+                                    <td class="py-3 px-4 font-medium text-green-800">Setiap Hari</td>
+                                    <td class="py-3 px-4">
+                                        <div class="font-semibold">Istighotsah Pagi</div>
+                                        <div class="text-xs text-gray-500">Doa bersama pagi hari</div>
+                                    </td>
+                                    <td class="py-3 px-4">06.45 - 07.00</td>
+                                    <td class="py-3 px-4">Halaman Sekolah</td>
+                                    <td class="py-3 px-4">Tim Rohis Harian</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-green-50 rounded-lg">
+                        <p class="text-green-800 text-sm">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <strong>Catatan:</strong> Jadwal dapat berubah sesuai dengan kondisi dan kebutuhan. Untuk informasi terbaru, silakan hubungi pengurus Rohis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-12">
+            <div class="bg-gradient-green text-white rounded-2xl p-8 text-center animate-fadeInUp">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">Tertarik Bergabung dengan Kegiatan Rohis?</h2>
+                <p class="max-w-2xl mx-auto mb-8">
+                    Mari bersama-sama mengembangkan potensi spiritual dan berkontribusi dalam kegiatan keislaman di sekolah.
+                    Daftarkan diri Anda untuk menjadi bagian dari keluarga besar Rohis Al Yusron.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#" class="bg-white text-green-800 font-bold px-6 py-3 rounded-lg hover:bg-green-50 transition">
+                        <i class="fas fa-user-plus mr-2"></i>Daftar Sekarang
+                    </a>
+                    <a href="#" class="bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-lg hover:bg-white hover:text-green-800 transition">
+                        <i class="fas fa-calendar mr-2"></i>Lihat Jadwal Lengkap
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="./images/logo-rohis.png" alt="Logo Rohis" class="w-12 h-12 mr-3">
+                        <div>
+                            <h3 class="font-bold text-xl">Rohis Al Yusron</h3>
+                            <p class="text-green-300 text-sm">SMK Hang Tuah 1 Jakarta</p>
+                        </div>
+                    </div>
+                    <p class="text-green-200">
+                        Wadah pembinaan keislaman siswa muslim di SMK Hang Tuah 1 Jakarta, 
+                        membentuk generasi beriman, berilmu, dan berakhlak mulia.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./index.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Beranda</a></li>
+                        <li><a href="./fungsi.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Fungsi dan Tujuan</a></li>
+                        <li><a href="./kegiatan.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Kegiatan Rohis</a></li>
+                        <li><a href="./prestasi.html" class="text-green-200 hover:text-white transition"><i class="fas fa-chevron-right text-xs mr-2"></i> Prestasi</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-xl mb-4 border-l-4 border-green-500 pl-3">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">SMK Hang Tuah 1 Jakarta, Jl. Tabah Raya No. 1, RT.1/RW.9, Kelurahan Kelapa Gading Barat, Kecamatan Kelapa Gading, Kota Administrasi Jakarta Utara, 14240.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 812-9736-9393 (Ust. Imam Royani, S.Pd.I)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 857-1884-4700 (Ust. Hendri Tris Munandar, S.Pd)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-green-300 mt-1 mr-3"></i>
+                            <span class="text-green-200">+62 896 4487 0970 (Ustzh. Fiqhiyatul Ma'rifah, S.Pd)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-800 pt-8 text-center">
+                <p class="text-green-300">© 2025 Rohis Al Yusron SMK Hang Tuah 1 Jakarta. All rights reserved.</p>
+                <p class="text-green-400 text-sm mt-2">Bersatu dalam Islam, Maju dalam Prestasi</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple animation on scroll
+            const animateElements = document.querySelectorAll('.animate-fadeInUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => observer.observe(el));
+            
+            // Mobile menu functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (hamburgerMenu && mobileNav) {
+                hamburgerMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                });
+            }
+            
+            // Mobile dropdown toggle
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdownContent = this.nextElementSibling;
+                    const chevron = this.querySelector('.fa-chevron-down');
+                    
+                    // Toggle dropdown
+                    dropdownContent.classList.toggle('active');
+                    
+                    // Rotate chevron
+                    if (chevron) {
+                        chevron.classList.toggle('rotate-180');
+                    }
+                    
+                    // Close other dropdowns
+                    mobileDropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            const otherContent = otherToggle.nextElementSibling;
+                            const otherChevron = otherToggle.querySelector('.fa-chevron-down');
+                            if (otherContent) {
+                                otherContent.classList.remove('active');
+                            }
+                            if (otherChevron) {
+                                otherChevron.classList.remove('rotate-180');
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('#mobile-nav a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.classList.contains('mobile-dropdown-toggle')) {
+                        if (hamburgerMenu && mobileNav) {
+                            hamburgerMenu.classList.remove('active');
+                            mobileNav.classList.remove('active');
+                        }
+                        
+                        // Close all dropdowns
+                        document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        
+                        // Reset all chevrons
+                        document.querySelectorAll('.mobile-dropdown-toggle .fa-chevron-down').forEach(chevron => {
+                            chevron.classList.remove('rotate-180');
+                        });
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (hamburgerMenu && mobileNav) {
+                            hamburgerMenu.classList.remove('active');
+                            mobileNav.classList.remove('active');
+                        }
+                    }
+                });
+            });
+            
+            // Highlight current week in schedule
+            function highlightCurrentWeek() {
+                const today = new Date();
+                const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+                const dayOfMonth = today.getDate();
+                
+                // Calculate week of month (1-4)
+                const weekOfMonth = Math.ceil((firstDayOfMonth.getDay() + dayOfMonth) / 7);
+                const weekNumber = Math.min(Math.max(weekOfMonth, 1), 4);
+                
+                // Remove previous highlights
+                document.querySelectorAll('.schedule-highlight').forEach(el => {
+                    el.classList.remove('schedule-highlight');
+                });
+                
+                // Add highlight to current week
+                const weekRows = document.querySelectorAll('tbody tr');
+                if (weekRows.length >= weekNumber) {
+                    weekRows[weekNumber - 1].classList.add('schedule-highlight');
+                }
+            }
+            
+            // Call the function
+            highlightCurrentWeek();
+        });
+    </script>
+</body>
+</html>
